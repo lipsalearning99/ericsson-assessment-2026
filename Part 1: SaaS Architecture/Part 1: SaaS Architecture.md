@@ -15,3 +15,5 @@ This diagram shows the container orchestration layer, a container registry, how 
 5.  Lambda queries database and returns JSON
     
 6.  React updates UI
+
+A static React app hosted in an S3 bucket with a CloudFront distribution in front of the website. The backend is running behind API Gateway, implemented as a Lambda function. Here, the application is fully downloaded to the client and rendered in a web browser. It sends requests to the backend.
