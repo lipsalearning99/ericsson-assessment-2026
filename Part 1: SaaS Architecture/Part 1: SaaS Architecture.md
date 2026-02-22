@@ -1,4 +1,4 @@
-# Part 1: SaaS Architecture
+# Part 1: SaaS Architecture - React SPA + API Gateway + Lambda architecture
 This diagram shows the container orchestration layer, a container registry, how the React frontend is delivered to users, how it communicates with the Python API, and how all underlying AWS services interact.
 
 
