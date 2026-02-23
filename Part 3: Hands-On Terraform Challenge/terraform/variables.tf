@@ -48,3 +48,14 @@ variable "tags" {
     error_message = "All tag keys and values must be non-empty strings."
   }
 }
+
+variable "environment_variables" {
+  description = "Non-sensitive environment variables for Lambda"
+  type        = map(string)
+  default     = {}
+
+  validation {
+    condition     = alltrue([for k, v in var.environment_variables : length(k) > 0 && length(v) > 0])
+    error_message = "Environment variable keys and values must be non-empty strings."
+  }
+}
