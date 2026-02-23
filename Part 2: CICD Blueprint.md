@@ -12,9 +12,9 @@ Three CICD pipelines required.
 
 **Recommended Stack**:
 
-- IaC Tool: Terraform or AWS CloudFormation
+- IaC Tool: Terraform
 
-- CI/CD: AWS CodePipeline or GitHub Actions
+- CI/CD: AWS CodePipeline
 
 - Build stage: AWS CodeBuild
 
@@ -22,21 +22,41 @@ Three CICD pipelines required.
 
 **Architecture Flow** : Git Push → CodePipeline → CodeBuild → terraform plan → manual approval (optional, but recommended for prod) → terraform apply → AWS updated
 
+
+
 **2️⃣ CI/CD Pipeline – React SPA → S3**
    
 **Goal** : Push to repo → Build React app → Deploy static files to S3
 
 **Recommended Stack**:
 
-- IaC Tool: Terraform or AWS CloudFormation
-
-- CI/CD: AWS CodePipeline or GitHub Actions
-
-- Build stage: AWS CodeBuild
-
-- State storage (Terraform): S3
+-   Amazon S3
+    
+-   Amazon CloudFront
+    
+-   AWS CodePipeline
+    
+-   AWS CodeBuild
 
 **Architecture Flow** : Git Push → CodePipeline → CodeBuild (npm build) → Upload to S3 → Invalidate CloudFront
+
+
+
+**3️⃣ CI/CD Pipeline – Python → Docker → ECR → Lambda**
+   
+**Goal** : Push to repo with changed code → Build Docker image → Push to ECR → Update Lambda with new image
+
+**Recommended Stack**:
+
+- Amazon Elastic Container Registry
+
+- AWS Lambda
+
+- AWS CodeBuild
+
+- AWS CodePipeline
+
+**Architecture Flow** : Git Push → CodePipeline → CodeBuild (Docker build) → Push to ECR → Update Lambda image URI
 
 
 
