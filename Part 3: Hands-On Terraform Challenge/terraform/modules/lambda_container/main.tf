@@ -26,32 +26,6 @@ resource "aws_iam_role" "lambda_role" {
 data "aws_region" "current" {}
 data "aws_caller_identity" "current" {}
 
-# data "aws_iam_policy_document" "lambda_logging" {
-#   statement {
-#     effect = "Allow"
-
-#     actions = [
-#       "logs:CreateLogStream",
-#       "logs:PutLogEvents"
-#     ]
-
-#     resources = [
-#       "${aws_cloudwatch_log_group.lambda.arn}:*"
-#     ]
-#   }
-# }
-
-
-# resource "aws_iam_policy" "lambda_logging" {
-#   name   = "${var.lambda_name}-logging-policy"
-#   policy = data.aws_iam_policy_document.lambda_logging.json
-# }
-
-# resource "aws_iam_role_policy_attachment" "lambda_logging" {
-#   role       = aws_iam_role.lambda_role.name
-#   policy_arn = aws_iam_policy.lambda_logging.arn
-# }
-
 data "aws_iam_policy_document" "lambda_execution" {
 
   # CloudWatch logging
@@ -91,6 +65,11 @@ resource "aws_iam_policy" "lambda_execution" {
 resource "aws_iam_role_policy_attachment" "lambda_execution" {
   role       = aws_iam_role.lambda_role.name
   policy_arn = aws_iam_policy.lambda_execution.arn
+}
+
+resource "aws_iam_role_policy_attachment" "lambda_vpc_access" {
+  role       = aws_iam_role.lambda_role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
 }
 
 ###################################################
@@ -148,6 +127,7 @@ resource "aws_lambda_function" "lambda" {
 
   depends_on = [
     aws_iam_role_policy_attachment.lambda_execution,
+    aws_iam_role_policy_attachment.lambda_vpc_access,
     aws_cloudwatch_log_group.lambda
   ]
 
