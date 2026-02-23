@@ -1,5 +1,3 @@
-# Table of Contents
-
 # Part 1 - SAAS Architecture for React frontend + Python backend application on AWS
 
 A static React app hosted in an S3 bucket with a CloudFront distribution in front of the website. The backend is running behind API Gateway, implemented as a Lambda function. Here, the application is fully downloaded to the client and rendered in a web browser. It sends requests to the backend.
