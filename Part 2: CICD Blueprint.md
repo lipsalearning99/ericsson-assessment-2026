@@ -43,20 +43,8 @@ Three CICD pipelines required.
 
 
 # Complete CI/CD Architecture Overview
+![Complete Architecture Overview](images/CompleteCICDArchitectureOverview.jpg.jpg)
 
-code```
-                ┌──────────────┐
-                │   GitHub     │
-                └──────┬───────┘
-                       │
-        ┌──────────────┼──────────────┐
-        │              │              │
-   Infra Pipeline   Frontend CI   Backend CI
-        │              │              │
-   Terraform Apply   Build React   Build Docker
-        │              │              │
-     AWS Updated      S3 + CF      ECR → Lambda
-```
 
 
 
