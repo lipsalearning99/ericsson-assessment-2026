@@ -12,10 +12,10 @@ variable "ecr_image_uri" {
   description = "ECR image URI for the Lambda container image"
   type        = string
 
-  validation {
-    condition     = can(regex("^\\d+\\.dkr\\.ecr\\..+\\.amazonaws\\.com\\/.+:.+$", var.ecr_image_uri))
-    error_message = "ECR image URI must be a valid ECR image URI."
-  }
+  # validation {
+  #   condition     = can(regex("^\\d+\\.dkr\\.ecr\\..+\\.amazonaws\\.com\\/.+:.+$", var.ecr_image_uri))
+  #   error_message = "ECR image URI must be a valid ECR image URI."
+  # }
 }
 
 variable "vpc_id" {

@@ -1,0 +1,22 @@
+lambda_name   = "my-container-lambda"
+ecr_image_uri = "public.ecr.aws/lambda/python:3.12"
+
+vpc_id = "vpc-0e6c2b71fa130f7df"
+
+private_subnet_ids = [
+  "subnet-0a36ec748e46f49fd",
+  "subnet-0ee61f6ed28cbc2c7"
+]
+
+environment_variables = {
+  ENVIRONMENT = "dev"
+  LOG_LEVEL   = "info"
+  REGION      = "us-east-1"
+}
+
+tags = {
+  Environment = "dev"
+  Project     = "ericssion-assessment"
+  ManagedBy   = "lipsa"
+  Application = "react-frontend-python-Backend"
+}
