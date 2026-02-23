@@ -20,13 +20,41 @@ resource "aws_iam_role" "lambda_role" {
   tags               = var.tags
 }
 
-#############################################################
-#### Custom CloudWatch Logs Policy (NO managed policies) ####
-#############################################################
+#################################################################################
+#### Custom CloudWatch Logs Policy and VPC permissions (NO managed policies) ####
+#################################################################################
 data "aws_region" "current" {}
 data "aws_caller_identity" "current" {}
 
-data "aws_iam_policy_document" "lambda_logging" {
+# data "aws_iam_policy_document" "lambda_logging" {
+#   statement {
+#     effect = "Allow"
+
+#     actions = [
+#       "logs:CreateLogStream",
+#       "logs:PutLogEvents"
+#     ]
+
+#     resources = [
+#       "${aws_cloudwatch_log_group.lambda.arn}:*"
+#     ]
+#   }
+# }
+
+
+# resource "aws_iam_policy" "lambda_logging" {
+#   name   = "${var.lambda_name}-logging-policy"
+#   policy = data.aws_iam_policy_document.lambda_logging.json
+# }
+
+# resource "aws_iam_role_policy_attachment" "lambda_logging" {
+#   role       = aws_iam_role.lambda_role.name
+#   policy_arn = aws_iam_policy.lambda_logging.arn
+# }
+
+data "aws_iam_policy_document" "lambda_execution" {
+
+  # CloudWatch logging
   statement {
     effect = "Allow"
 
@@ -39,16 +67,30 @@ data "aws_iam_policy_document" "lambda_logging" {
       "${aws_cloudwatch_log_group.lambda.arn}:*"
     ]
   }
+
+  # Required for Lambda inside VPC
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "ec2:CreateNetworkInterface",
+      "ec2:DescribeNetworkInterfaces",
+      "ec2:DeleteNetworkInterface"
+    ]
+
+    resources = ["*"]
+  }
 }
 
-resource "aws_iam_policy" "lambda_logging" {
-  name   = "${var.lambda_name}-logging-policy"
-  policy = data.aws_iam_policy_document.lambda_logging.json
+
+resource "aws_iam_policy" "lambda_execution" {
+  name   = "${var.lambda_name}-lambda-policy"
+  policy = data.aws_iam_policy_document.lambda_execution.json
 }
 
-resource "aws_iam_role_policy_attachment" "lambda_logging" {
+resource "aws_iam_role_policy_attachment" "lambda_execution" {
   role       = aws_iam_role.lambda_role.name
-  policy_arn = aws_iam_policy.lambda_logging.arn
+  policy_arn = aws_iam_policy.lambda_execution.arn
 }
 
 ###################################################
@@ -105,7 +147,7 @@ resource "aws_lambda_function" "lambda" {
   }
 
   depends_on = [
-    aws_iam_role_policy_attachment.lambda_logging,
+    aws_iam_role_policy_attachment.lambda_execution,
     aws_cloudwatch_log_group.lambda
   ]
 
