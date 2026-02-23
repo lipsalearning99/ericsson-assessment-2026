@@ -43,7 +43,7 @@ Three CICD pipelines required.
 
 
 # Complete CI/CD Architecture Overview
-![Complete Architecture Overview](images/CompleteCICDArchitectureOverview.jpg.jpg)
+![Complete Architecture Overview](images/CompleteCICDArchitectureOverview.jpg)
 
 
 
