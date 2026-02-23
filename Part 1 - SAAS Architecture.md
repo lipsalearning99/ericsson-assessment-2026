@@ -37,3 +37,5 @@ A static React app hosted in an S3 bucket with a CloudFront distribution in fron
     
 6.  React updates UI
 
+
+![SAAS Architecture Diagram](images/SaaS Architecture.jpg)
