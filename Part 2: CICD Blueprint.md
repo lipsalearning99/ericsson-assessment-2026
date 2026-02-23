@@ -1,10 +1,4 @@
 # Part 2: CICD Blueprint
-Three CICD pipelines required.
-
-
-2. CICD pipeline to maintain frontend react SPA - Every code push to remote repo will trigger pipeline to push the updated application to S3 bucket
-3. CICD pipeline to maintain the - Every code push to remote repo will trigger pipeline to build a new docker images from updated python code, push to ECR repository, and re deploy the lambda functions with the new container.
-
 
 **1️⃣ CI/CD Pipeline – Infrastructure (IaC → AWS)**
    
