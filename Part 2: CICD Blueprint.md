@@ -1,6 +1,6 @@
 # Part 2: CICD Blueprint
 
-**1️⃣ CI/CD Pipeline – Infrastructure (IaC → AWS)**
+## **1️⃣ CI/CD Pipeline – Infrastructure (IaC → AWS)**
    
 **Goal** : Every push to the infra repo updates AWS infrastructure automatically.
 
@@ -18,7 +18,7 @@
 
 
 
-**2️⃣ CI/CD Pipeline – React SPA → S3**
+## **2️⃣ CI/CD Pipeline – React SPA → S3**
    
 **Goal** : Push to repo → Build React app → Deploy static files to S3
 
@@ -36,7 +36,7 @@
 
 
 
-**3️⃣ CI/CD Pipeline – Python → Docker → ECR → Lambda**
+## **3️⃣ CI/CD Pipeline – Python → Docker → ECR → Lambda**
    
 **Goal** : Push to repo with changed code → Build Docker image → Push to ECR → Update Lambda with new image
 
