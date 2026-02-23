@@ -66,7 +66,8 @@ Three CICD pipelines required.
 ![Complete Architecture Overview](images/CompleteCICDArchitectureOverview.jpg)
 
 
-
+# CI/CD pipeline for backend application deployment to Lambda
+![cicd-blueprint](images/cicd-blueprint.jpg)
 
 
 
