@@ -5,10 +5,13 @@
 A static React app hosted in an S3 bucket with a CloudFront distribution in front of the website. The backend is running behind API Gateway, implemented as a Lambda function. Here, the application is fully downloaded to the client and rendered in a web browser. It sends requests to the backend.
 
 ## Solution Steps
-Create an Amazon S3 bucket and set it up for static website hosting
-Create DNS records in Amazon Route53
-Set up an Amazon CloudFront distribution and link it with a custom domain
-Secure the connection via SSL/UsersTLS and AWS Certificate Manager
+1.  Create an Amazon S3 bucket and set it up for static website hosting
+   
+2.  Create DNS records in Amazon Route53
+
+3.  Set up an Amazon CloudFront distribution and link it with a custom domain
+   
+4.  Secure the connection via SSL/UsersTLS and AWS Certificate Manager
 
 ## End-to-End Request Flow
 1.  User loads site from **CloudFront**
